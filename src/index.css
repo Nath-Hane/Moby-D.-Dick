@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-abyss text-foam antialiased font-syne selection:bg-gold selection:text-abyss;
+    overflow-x: hidden;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-dark-glass backdrop-blur-md border px-6 rounded-full border-white/10;
+  }
+  
+  .glass-panel {
+    @apply bg-abyss/80 backdrop-blur-xl border border-white/5;
+  }
+
+  .text-outline {
+    -webkit-text-stroke: 1px rgba(255,255,255,0.2);
+    color: transparent;
+  }
+}
+
+/* Hide scrollbar for Lenis smooth scrolling or general cleanliness */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
