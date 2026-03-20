@@ -25,6 +25,7 @@ const Products = () => {
       subtitle: "Pech 4",
       description: "L'ingénierie absolue au service des opérations côtières et des espaces navigables intérieurs (Calm Waters). La Classe Littoral garantit une manœuvrabilité chirurgicale à très faible sillage pour les déploiements tactiques.",
       imageColor: "#1a2530", // Dark grey/slate
+      imageUrl: `${import.meta.env.BASE_URL}assets/hors-bord.jpg`,
       reverse: false,
       specs: {
         length: "85m",
@@ -41,6 +42,7 @@ const Products = () => {
       subtitle: "Prom 5.5",
       description: "La domination totale sur l'océan ouvert. Deux coques asymétriques sculptées pour briser la haute houle avec une réduction de traînée de 30%. L'outil B2B ultime pour le transport logistique offshore lourd.",
       imageColor: "#4B5563", // Gray
+      imageUrl: `${import.meta.env.BASE_URL}assets/voilier.jpg`,
       reverse: true, // Uses light theme for visual rhythm
       specs: {
         length: "110m",
@@ -57,6 +59,8 @@ const Products = () => {
       subtitle: "Stan 8",
       description: "Le mastodonte. Une ingénierie brute dépourvue de compromis. Quand l'océan exige le respect, la DeepOcean l'impose. Prévue pour un confort optimal, même dans la plus tumultueuse des tempêtes.",
       imageColor: "#050814", // Very dark navy
+      imageUrl: `${import.meta.env.BASE_URL}assets/yatch.webp`,
+      imagePosition: "bottom",
       reverse: false,
       specs: {
         length: "145m",
@@ -89,6 +93,8 @@ const Products = () => {
                 subtitle={hull.subtitle}
                 description={hull.description}
                 imageColor={hull.imageColor}
+                imageUrl={hull.imageUrl}
+                imagePosition={hull.imagePosition}
                 reverse={hull.reverse}
                 specs={hull.specs}
               />

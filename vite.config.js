@@ -4,6 +4,7 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/Moby-D.-Dick/',
   plugins: [react()],
   resolve: {
     alias: {

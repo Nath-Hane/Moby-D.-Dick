@@ -2,8 +2,9 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import Blueprint from './Blueprint';
 import { cn } from '@/lib/utils';
+import { Crosshair } from 'lucide-react';
 
-const HullSection = ({ title, subtitle, description, imageColor, specs, reverse }) => {
+const HullSection = ({ title, subtitle, description, imageColor, imageUrl, imagePosition, specs, reverse }) => {
   const sectionRef = useRef(null);
   const visualsRef = useRef(null);
   const imageRef = useRef(null);
@@ -65,24 +66,58 @@ const HullSection = ({ title, subtitle, description, imageColor, specs, reverse 
       <div 
         ref={visualsRef} 
         className={cn(
-          "w-full md:w-[60vw] h-screen flex items-center justify-center p-8",
+          "w-full md:w-[60vw] h-screen flex items-center justify-center p-8 md:p-16 relative",
           reverse ? "md:order-last" : "md:order-first"
         )}
       >
-        <div className="w-full max-w-2xl aspect-[4/3] max-h-[80vh] relative shadow-2xl rounded-sm overflow-hidden border border-white/5">
+        <div className="w-full max-w-2xl aspect-[4/3] max-h-[80vh] relative">
+          
+          {/* HUD Elements */}
+          <div className={cn("absolute -inset-4 md:-inset-8 border pointer-events-none", reverse ? "border-abyss/10 bg-abyss/[0.02]" : "border-white/5 bg-white/[0.02]")} />
+          
+          {/* Corners (Brackets) */}
+          <div className={cn("absolute -top-6 md:-top-12 -left-6 md:-left-12 w-8 md:w-16 h-8 md:h-16 border-t border-l pointer-events-none", reverse ? "border-abyss/40" : "border-gold/40")} />
+          <div className={cn("absolute -top-6 md:-top-12 -right-6 md:-right-12 w-8 md:w-16 h-8 md:h-16 border-t border-r pointer-events-none", reverse ? "border-abyss/40" : "border-gold/40")} />
+          <div className={cn("absolute -bottom-6 md:-bottom-12 -left-6 md:-left-12 w-8 md:w-16 h-8 md:h-16 border-b border-l pointer-events-none", reverse ? "border-abyss/40" : "border-gold/40")} />
+          <div className={cn("absolute -bottom-6 md:-bottom-12 -right-6 md:-right-12 w-8 md:w-16 h-8 md:h-16 border-b border-r pointer-events-none", reverse ? "border-abyss/40" : "border-gold/40")} />
+          
+          {/* Random crosshairs */}
+          <Crosshair className={cn("absolute top-1/4 -left-10 md:-left-16 w-4 h-4 pointer-events-none", reverse ? "text-abyss/30" : "text-gold/30")} />
+          <Crosshair className={cn("absolute bottom-1/4 -right-10 md:-right-16 w-4 h-4 pointer-events-none", reverse ? "text-abyss/30" : "text-gold/30")} />
+          
+          {/* Data text */}
+          <div className={cn("absolute -top-8 md:-top-10 left-0 font-mono text-[8px] md:text-[10px] tracking-widest uppercase pointer-events-none", reverse ? "text-abyss/50" : "text-gold/50")}>
+            SYS.TRACKING_{title.toUpperCase().replace(/ /g, '_')} // HULL.ID: {title.length * 1024}
+          </div>
+          <div className={cn("absolute -bottom-8 md:-bottom-10 right-0 font-mono text-[8px] md:text-[10px] tracking-widest uppercase pointer-events-none", reverse ? "text-abyss/50" : "text-gold/50")}>
+            SCALE: 1:100 // VECTOR: ALIGNED
+          </div>
+          <div className={cn("absolute top-1/2 -left-16 md:-left-24 -translate-y-1/2 -rotate-90 font-mono text-[8px] md:text-[10px] tracking-widest uppercase whitespace-nowrap pointer-events-none origin-center", reverse ? "text-abyss/30" : "text-gold/30")}>
+            ELEVATION PROFILE // {specs.material.toUpperCase()}
+          </div>
+
+          <div className="absolute inset-0 z-10 shadow-2xl overflow-hidden border border-white/10 rounded-sm">
           {/* Top layer: Beautiful exterior image placeholder */}
           <div 
             ref={imageRef} 
-            className="absolute inset-0 z-20 flex items-center justify-center"
-            style={{ backgroundColor: imageColor }}
+            className={cn("absolute inset-0 z-20 flex items-center justify-center", !imageUrl && "bg-zinc-900")}
+            style={{ backgroundColor: !imageUrl ? imageColor : 'transparent' }}
           >
-            <div className="absolute inset-0 bg-gradient-to-tr from-black/40 to-transparent" />
-            <div className="font-syne text-4xl font-bold tracking-widest text-white/50 uppercase mix-blend-overlay">RENDU EXTERIEUR</div>
+            {imageUrl && (
+              <img 
+                src={imageUrl} 
+                alt={`Rendu extérieur ${title}`} 
+                className={cn("absolute inset-0 w-full h-full object-cover", imagePosition === 'bottom' ? 'object-bottom' : 'object-center')} 
+              />
+            )}
+            <div className="absolute inset-0 bg-gradient-to-tr from-black/40 to-transparent z-10" />
+            {!imageUrl && <div className="font-syne text-4xl font-bold tracking-widest text-white/50 uppercase mix-blend-overlay z-20">RENDU EXTERIEUR</div>}
           </div>
           
           {/* Bottom layer: Technical blueprint */}
           <div ref={blueprintRef} className="absolute inset-0 z-10 bg-abyss opacity-0">
              <Blueprint title={title} scale="1:100" specs={specs} />
+          </div>
           </div>
         </div>
       </div>

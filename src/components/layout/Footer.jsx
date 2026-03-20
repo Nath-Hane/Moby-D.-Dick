@@ -8,7 +8,7 @@ const Footer = () => {
           <div className="flex items-center gap-3">
             <div className="relative w-10 h-10 flex-shrink-0 flex items-center justify-center">
               <img 
-                src="/assets/Logo without background.png" 
+                src={`${import.meta.env.BASE_URL}assets/Logo without background.png`} 
                 alt="Moby Dick Logo"
                 className="w-[140%] h-[140%] max-w-none object-contain"
                 style={{ clipPath: 'polygon(0 0, 100% 0, 100% 80%, 80% 80%, 80% 100%, 0 100%)' }}

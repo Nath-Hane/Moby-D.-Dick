@@ -38,7 +38,7 @@ const Navbar = () => {
           {/* Logo container enlarged (w-12 h-12), centered, using clip-path to crop bottom-right watermark without decentering */}
           <div className="relative w-12 h-12 flex-shrink-0 flex items-center justify-center">
             <img 
-              src="/assets/Logo without background.png" 
+              src={`${import.meta.env.BASE_URL}assets/Logo without background.png`} 
               alt="Moby Dick Logo"
               className="w-[140%] h-[140%] max-w-none object-contain"
               style={{ clipPath: 'polygon(0 0, 100% 0, 100% 80%, 80% 80%, 80% 100%, 0 100%)' }}

@@ -50,7 +50,7 @@ const Hero = () => {
           className="object-cover w-full h-full opacity-60"
         >
           {/* Note: In a real environment we map to the exact file path or public folder. Assuming the assets folder is available at root */}
-          <source src="/assets/arrière-plan-landing-page.mp4" type="video/mp4" />
+          <source src={`${import.meta.env.BASE_URL}assets/arrière-plan-landing-page.mp4`} type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-abyss/40 via-transparent to-abyss/90" />
       </div>
