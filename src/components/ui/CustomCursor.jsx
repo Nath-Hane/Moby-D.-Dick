@@ -1,66 +1,97 @@
-import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { useEffect, useRef } from 'react';
 
 const CustomCursor = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isHovering, setIsHovering] = useState(false);
+  const dotRef = useRef(null);
+  const ringRef = useRef(null);
+  const isHovering = useRef(false);
 
   useEffect(() => {
-    const updateMousePosition = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+    const dot = dotRef.current;
+    const ring = ringRef.current;
+    if (!dot || !ring) return;
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+
+    // Ring follow vars (smooth trailing for ring only)
+    let ringX = mouseX;
+    let ringY = mouseY;
+    let rafId;
+
+    const onMouseMove = (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      // Dot tracks exactly with no lag
+      dot.style.transform = `translate3d(${mouseX - 14}px, ${mouseY - 14}px, 0)`;
     };
 
-    const handleMouseOver = (e) => {
-      if (
-        e.target.closest('a') ||
-        e.target.closest('button') ||
-        e.target.closest('.interactive-element')
-      ) {
-        setIsHovering(true);
-      } else {
-        setIsHovering(false);
-      }
+    const onMouseOver = (e) => {
+      const hoverable = e.target.closest('a, button, .interactive-element');
+      isHovering.current = !!hoverable;
     };
 
-    window.addEventListener('mousemove', updateMousePosition);
-    window.addEventListener('mouseover', handleMouseOver);
+    // Smooth ring trailing loop
+    const loop = () => {
+      ringX += (mouseX - ringX) * 0.18;
+      ringY += (mouseY - ringY) * 0.18;
+      ring.style.transform = `translate3d(${ringX - 54}px, ${ringY - 54}px, 0) scale(${isHovering.current ? 1.4 : 0.5})`;
+      ring.style.opacity = isHovering.current ? '1' : '0';
+      rafId = requestAnimationFrame(loop);
+    };
+
+    loop();
+
+    window.addEventListener('mousemove', onMouseMove, { passive: true });
+    window.addEventListener('mouseover', onMouseOver);
 
     return () => {
-      window.removeEventListener('mousemove', updateMousePosition);
-      window.removeEventListener('mouseover', handleMouseOver);
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseover', onMouseOver);
+      cancelAnimationFrame(rafId);
     };
   }, []);
 
   return (
     <>
-      <motion.div
-        className="fixed top-0 left-0 w-3 h-3 bg-gold rounded-full pointer-events-none z-[100] mix-blend-difference"
-        animate={{
-          x: mousePosition.x - 6,
-          y: mousePosition.y - 6,
-          scale: isHovering ? 0 : 1,
-          opacity: 1,
-        }}
-        transition={{
-          type: 'spring',
-          damping: 20,
-          stiffness: 300,
-          mass: 0.2,
+      {/* Global style to hide native cursor */}
+      <style>{`* { cursor: none !important; }`}</style>
+
+      {/* Main dot — tracks 1:1, no lag */}
+      <div
+        ref={dotRef}
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: 28,
+          height: 28,
+          borderRadius: '50%',
+          backgroundColor: '#D4AF37',
+          pointerEvents: 'none',
+          zIndex: 9999,
+          mixBlendMode: 'difference',
+          willChange: 'transform',
+          transition: 'none',
         }}
       />
-      <motion.div
-        className="fixed top-0 left-0 w-12 h-12 border border-gold rounded-full pointer-events-none z-[100] mix-blend-difference"
-        animate={{
-          x: mousePosition.x - 24,
-          y: mousePosition.y - 24,
-          scale: isHovering ? 1.5 : 0,
-          opacity: isHovering ? 1 : 0,
-        }}
-        transition={{
-          type: 'spring',
-          damping: 20,
-          stiffness: 300,
-          mass: 0.2,
+
+      {/* Ring — appears on hover with smooth trail */}
+      <div
+        ref={ringRef}
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: 108,
+          height: 108,
+          borderRadius: '50%',
+          border: '1.5px solid #D4AF37',
+          pointerEvents: 'none',
+          zIndex: 9999,
+          mixBlendMode: 'difference',
+          opacity: 0,
+          willChange: 'transform, opacity',
+          transition: 'opacity 0.2s ease',
         }}
       />
     </>
