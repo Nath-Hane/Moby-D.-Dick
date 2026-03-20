@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import { Anchor } from 'lucide-react';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -29,24 +28,33 @@ const Navbar = () => {
     >
       <nav
         className={cn(
-          'flex items-center justify-between transition-all duration-300',
-          scrolled ? 'glass' : 'bg-transparent px-8'
+          'flex items-center justify-between transition-all duration-500 ease-in-out',
+          scrolled ? 'bg-foam/95 px-6 rounded-full shadow-2xl gap-8' : 'bg-foam/90 px-8 rounded-2xl shadow-lg gap-8',
+          'backdrop-blur-md border border-abyss/10 text-abyss'
         )}
-        style={{ width: scrolled ? '50%' : '90%', minWidth: '320px' }}
+        style={{ width: '90%', maxWidth: scrolled ? '550px' : '1400px', minWidth: '350px' }}
       >
-        <div className="flex items-center gap-2 py-3">
-          <Anchor className="w-5 h-5 text-gold" />
-          <span className="font-syne font-bold text-lg tracking-widest uppercase">
+        <div className="flex items-center gap-4 py-2">
+          {/* Logo container enlarged (w-12 h-12), centered, using clip-path to crop bottom-right watermark without decentering */}
+          <div className="relative w-12 h-12 flex-shrink-0 flex items-center justify-center">
+            <img 
+              src="/assets/Logo without background.png" 
+              alt="Moby Dick Logo"
+              className="w-[140%] h-[140%] max-w-none object-contain"
+              style={{ clipPath: 'polygon(0 0, 100% 0, 100% 80%, 80% 80%, 80% 100%, 0 100%)' }}
+            />
+          </div>
+          <span className="font-syne font-bold text-xl tracking-widest uppercase">
             Moby Dick
           </span>
         </div>
 
-        <div className="flex items-center gap-8 font-mono text-sm tracking-widest text-titanium">
+        <div className="flex items-center gap-8 font-mono text-sm tracking-widest text-abyss/70 whitespace-nowrap">
           <Link
             to="/"
             className={cn(
               'hover:text-gold transition-colors interactive-element',
-              location.pathname === '/' && 'text-white'
+              location.pathname === '/' && 'text-abyss font-bold'
             )}
           >
             LA MARQUE
@@ -55,7 +63,7 @@ const Navbar = () => {
             to="/products"
             className={cn(
               'hover:text-gold transition-colors interactive-element',
-              location.pathname === '/products' && 'text-white'
+              location.pathname === '/products' && 'text-abyss font-bold'
             )}
           >
             FLOTTE

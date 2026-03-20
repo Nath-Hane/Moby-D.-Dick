@@ -19,8 +19,8 @@ const Footer = () => {
         <div className="flex gap-16 font-mono text-sm">
           <div className="flex flex-col gap-4">
             <h4 className="text-white font-bold tracking-widest uppercase mb-2">Division B2B</h4>
+            <a href="#" className="hover:text-gold transition-colors interactive-element">Classe Littoral</a>
             <a href="#" className="hover:text-gold transition-colors interactive-element">Flotte Offshore</a>
-            <a href="#" className="hover:text-gold transition-colors interactive-element">Classe Catamaran</a>
             <a href="#" className="hover:text-gold transition-colors interactive-element">Projets DeepOcean</a>
           </div>
           <div className="flex flex-col gap-4">
