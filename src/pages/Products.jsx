@@ -23,35 +23,35 @@ const Products = () => {
     {
       title: "Classe Littoral",
       subtitle: "Pech 4",
-      description: "L'ingénierie absolue au service des opérations côtières et des espaces navigables intérieurs (Calm Waters). La Classe Littoral garantit une manœuvrabilité chirurgicale à très faible sillage pour les déploiements tactiques.",
+      description: "Vélocité et précision absolues pour les déplacements côtiers rapides. Conçu autour d'une propulsion hydrojet ultra-dynamique, le Pech 4 offre une accélération balistique tout en maintenant une stabilité parfaite pour des transports VIP.",
       imageColor: "#1a2530", // Dark grey/slate
       imageUrl: `${import.meta.env.BASE_URL}assets/hors-bord.jpg`,
       reverse: false,
       specs: {
-        length: "85m",
-        beam: "18m",
-        material: "Alliage Carbone/Titane",
-        draft: "4.5m",
-        drag: "Cv 0.12",
-        resistance: "Sea State 4",
-        payload: "1250 Tonnes"
+        length: "14m",
+        beam: "4.2m",
+        material: "Kevlar / Carbone Forgé",
+        draft: "0.8m",
+        drag: "Cv 0.05",
+        resistance: "Sea State 3",
+        payload: "3.5 Tonnes"
       }
     },
     {
       title: "Classe Offshore",
       subtitle: "Prom 5.5",
-      description: "La domination totale sur l'océan ouvert. Deux coques asymétriques sculptées pour briser la haute houle avec une réduction de traînée de 30%. L'outil B2B ultime pour le transport logistique offshore lourd.",
+      description: "L'alliance parfaite entre l'ingénierie éolienne furtive et le luxe silencieux de la haute mer. Ses foils en titane et son gréement composite profilé lui permettent des croisières transocéaniques à très haute vitesse, dans une autonomie énergétique totale.",
       imageColor: "#4B5563", // Gray
       imageUrl: `${import.meta.env.BASE_URL}assets/voilier.jpg`,
       reverse: true, // Uses light theme for visual rhythm
       specs: {
-        length: "110m",
-        beam: "32m",
-        material: "Aluminium Renforcé Otan",
-        draft: "2.8m",
-        drag: "Cv 0.08",
-        resistance: "Sea State 5",
-        payload: "2400 Tonnes"
+        length: "24m",
+        beam: "6.8m",
+        material: "Fibre de Carbone Haut Module",
+        draft: "3.5m",
+        drag: "Cv 0.03",
+        resistance: "Sea State 6",
+        payload: "12 Tonnes"
       }
     },
     {
