@@ -34,7 +34,8 @@ const CustomCursor = () => {
     const loop = () => {
       ringX += (mouseX - ringX) * 0.18;
       ringY += (mouseY - ringY) * 0.18;
-      ring.style.transform = `translate3d(${ringX - 54}px, ${ringY - 54}px, 0) scale(${isHovering.current ? 1.4 : 0.5})`;
+      dot.style.opacity = isHovering.current ? '0' : '1';
+      ring.style.transform = `translate3d(${ringX - 30}px, ${ringY - 30}px, 0) scale(${isHovering.current ? 1 : 0.5})`;
       ring.style.opacity = isHovering.current ? '1' : '0';
       rafId = requestAnimationFrame(loop);
     };
@@ -82,8 +83,8 @@ const CustomCursor = () => {
           position: 'fixed',
           top: 0,
           left: 0,
-          width: 108,
-          height: 108,
+          width: 60,
+          height: 60,
           borderRadius: '50%',
           border: '1.5px solid #D4AF37',
           pointerEvents: 'none',
