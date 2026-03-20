@@ -68,6 +68,15 @@ const Navbar = () => {
           >
             FLOTTE
           </Link>
+          <Link
+            to="/insights"
+            className={cn(
+              'hover:text-gold transition-colors interactive-element',
+              location.pathname === '/insights' && 'text-abyss font-bold'
+            )}
+          >
+            INSIGHTS
+          </Link>
         </div>
       </nav>
     </header>

@@ -1,14 +1,28 @@
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import HullSection from '../components/product/HullSection';
 
 const Products = () => {
+  const { hash } = useLocation();
+
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    if (hash) {
+      setTimeout(() => {
+        const id = hash.replace('#', '');
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [hash]);
 
   const hulls = [
     {
       title: "Classe Littoral",
+      subtitle: "Pech 4",
       description: "L'ingénierie absolue au service des opérations côtières et des espaces navigables intérieurs (Calm Waters). La Classe Littoral garantit une manœuvrabilité chirurgicale à très faible sillage pour les déploiements tactiques.",
       imageColor: "#1a2530", // Dark grey/slate
       reverse: false,
@@ -24,6 +38,7 @@ const Products = () => {
     },
     {
       title: "Classe Offshore",
+      subtitle: "Prom 5.5",
       description: "La domination totale sur l'océan ouvert. Deux coques asymétriques sculptées pour briser la haute houle avec une réduction de traînée de 30%. L'outil B2B ultime pour le transport logistique offshore lourd.",
       imageColor: "#4B5563", // Gray
       reverse: true, // Uses light theme for visual rhythm
@@ -39,6 +54,7 @@ const Products = () => {
     },
     {
       title: "Projet DeepOcean",
+      subtitle: "Stan 8",
       description: "Le mastodonte. Une ingénierie brute dépourvue de compromis. Quand l'océan exige le respect, la DeepOcean l'impose. Prévue pour un confort optimal, même dans la plus tumultueuse des tempêtes.",
       imageColor: "#050814", // Very dark navy
       reverse: false,
@@ -64,17 +80,21 @@ const Products = () => {
       </div>
 
       <div className="flex flex-col">
-        {hulls.map((hull, index) => (
-          <div key={index}>
-            <HullSection
-              title={hull.title}
-              description={hull.description}
-              imageColor={hull.imageColor}
-              reverse={hull.reverse}
-              specs={hull.specs}
-            />
-          </div>
-        ))}
+        {hulls.map((hull, index) => {
+          const hullId = hull.title.toLowerCase().replace(/ /g, '-').normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+          return (
+            <div key={index} id={hullId} className="scroll-mt-32">
+              <HullSection
+                title={hull.title}
+                subtitle={hull.subtitle}
+                description={hull.description}
+                imageColor={hull.imageColor}
+                reverse={hull.reverse}
+                specs={hull.specs}
+              />
+            </div>
+          );
+        })}
       </div>
 
       {/* Strategic B2B Lead Gen CTA / Contact block */}

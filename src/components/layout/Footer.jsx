@@ -1,12 +1,19 @@
-import { Anchor } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
     <footer className="bg-[#050B14] text-titanium py-20 px-8 border-t border-white/5 relative z-10">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
         <div className="flex flex-col gap-6 max-w-sm">
-          <div className="flex items-center gap-2">
-            <Anchor className="w-6 h-6 text-gold" />
+          <div className="flex items-center gap-3">
+            <div className="relative w-10 h-10 flex-shrink-0 flex items-center justify-center">
+              <img 
+                src="/assets/Logo without background.png" 
+                alt="Moby Dick Logo"
+                className="w-[140%] h-[140%] max-w-none object-contain"
+                style={{ clipPath: 'polygon(0 0, 100% 0, 100% 80%, 80% 80%, 80% 100%, 0 100%)' }}
+              />
+            </div>
             <span className="font-syne font-bold text-xl tracking-widest uppercase text-white">
               Moby Dick
             </span>
@@ -18,16 +25,16 @@ const Footer = () => {
 
         <div className="flex gap-16 font-mono text-sm">
           <div className="flex flex-col gap-4">
-            <h4 className="text-white font-bold tracking-widest uppercase mb-2">Division B2B</h4>
-            <a href="#" className="hover:text-gold transition-colors interactive-element">Classe Littoral</a>
-            <a href="#" className="hover:text-gold transition-colors interactive-element">Flotte Offshore</a>
-            <a href="#" className="hover:text-gold transition-colors interactive-element">Projets DeepOcean</a>
+            <h4 className="text-white font-bold tracking-widest uppercase mb-2">Flotte</h4>
+            <Link to="/products#classe-littoral" className="hover:text-gold transition-colors interactive-element">Classe Littoral</Link>
+            <Link to="/products#classe-offshore" className="hover:text-gold transition-colors interactive-element">Flotte Offshore</Link>
+            <Link to="/products#projet-deepocean" className="hover:text-gold transition-colors interactive-element">Projets DeepOcean</Link>
           </div>
           <div className="flex flex-col gap-4">
-            <h4 className="text-white font-bold tracking-widest uppercase mb-2">Contact</h4>
-            <a href="#" className="hover:text-gold transition-colors interactive-element">Consultation</a>
-            <a href="#" className="hover:text-gold transition-colors interactive-element">Direction technique</a>
-            <a href="#" className="hover:text-gold transition-colors interactive-element">Presse</a>
+            <h4 className="text-white font-bold tracking-widest uppercase mb-2">Presse & Vision</h4>
+            <Link to="/insights" className="hover:text-gold transition-colors interactive-element">Insights Stratégiques</Link>
+            <a href="#" className="hover:text-gold transition-colors interactive-element">Rapports Financiers</a>
+            <a href="#" className="hover:text-gold transition-colors interactive-element">Communiqués</a>
           </div>
         </div>
       </div>

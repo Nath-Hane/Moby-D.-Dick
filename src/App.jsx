@@ -9,6 +9,7 @@ import Footer from './components/layout/Footer';
 import CustomCursor from './components/ui/CustomCursor';
 import Home from './pages/Home';
 import Products from './pages/Products';
+import Insights from './pages/Insights';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -49,6 +50,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<Products />} />
+            <Route path="/insights" element={<Insights />} />
           </Routes>
         </main>
         <Footer />

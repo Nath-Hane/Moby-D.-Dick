@@ -3,7 +3,7 @@ import gsap from 'gsap';
 import Blueprint from './Blueprint';
 import { cn } from '@/lib/utils';
 
-const HullSection = ({ title, description, imageColor, specs, reverse }) => {
+const HullSection = ({ title, subtitle, description, imageColor, specs, reverse }) => {
   const sectionRef = useRef(null);
   const visualsRef = useRef(null);
   const imageRef = useRef(null);
@@ -90,9 +90,14 @@ const HullSection = ({ title, description, imageColor, specs, reverse }) => {
       {/* Content Area (Scrolls past) */}
       <div className={cn("w-full md:w-[40vw] pt-[50vh] pb-[50vh] px-8 lg:px-16 flex flex-col justify-center", reverse ? "md:order-first" : "md:order-last")}>
         <div ref={textRef}>
-          <h2 className={cn("font-syne text-5xl md:text-7xl font-bold uppercase tracking-tight mb-8 leading-none", reverse ? "text-abyss" : "text-white")}>
+          <h2 className={cn("font-syne text-5xl md:text-7xl font-bold uppercase tracking-tight mb-2 leading-none", reverse ? "text-abyss" : "text-white")}>
             {title}
           </h2>
+          {subtitle && (
+            <h3 className="font-mono text-3xl md:text-4xl tracking-widest text-gold mb-8 uppercase font-bold">
+              Arch: {subtitle}
+            </h3>
+          )}
           <p className={cn("font-mono text-sm leading-relaxed mb-12", reverse ? "text-abyss/80" : "text-titanium")}>
             {description}
           </p>
