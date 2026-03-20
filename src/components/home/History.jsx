@@ -64,10 +64,13 @@ const History = () => {
               </p>
             </div>
 
-            {/* Geometric placeholder for historical images */}
+            {/* Historical images */}
             <div className="w-full h-64 bg-white/5 border border-white/10 mt-16 group-hover:border-gold/30 transition-colors overflow-hidden relative">
-              <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(45deg, #0A1128 25%, transparent 25%, transparent 75%, #0A1128 75%, #0A1128), linear-gradient(45deg, #0A1128 25%, transparent 25%, transparent 75%, #0A1128 75%, #0A1128)', backgroundSize: '10px 10px', backgroundPosition: '0 0, 5px 5px' }} />
-              <div className="absolute inset-0 flex items-center justify-center font-mono text-xs text-white/20 tracking-widest">ARCHIVE_VISION_{milestone.year}</div>
+              <img 
+                src={`${import.meta.env.BASE_URL}assets/archive_${milestone.year}.png`} 
+                alt={`Archive Moby Dick ${milestone.year}`} 
+                className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" 
+              />
             </div>
           </div>
         ))}
