@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
+import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Lenis from '@studio-freight/lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -13,7 +13,23 @@ import Insights from './pages/Insights';
 
 gsap.registerPlugin(ScrollTrigger);
 
+function ScrollToTop({ lenisRef }) {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname]);
+
+  return null;
+}
+
 function App() {
+  const lenisRef = useRef(null);
+
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -27,6 +43,7 @@ function App() {
       infinite: false,
     });
 
+    lenisRef.current = lenis;
     lenis.on('scroll', ScrollTrigger.update);
 
     gsap.ticker.add((time) => {
@@ -43,6 +60,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop lenisRef={lenisRef} />
       <CustomCursor />
       <div className="min-h-screen flex flex-col relative w-full overflow-hidden">
         <Navbar />
