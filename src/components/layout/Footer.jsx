@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="bg-[#050B14] text-titanium py-20 px-8 border-t border-white/5 relative z-10">
+    <footer className="bg-[#050B14] text-titanium py-12 md:py-20 px-6 md:px-8 border-t border-white/5 relative z-10">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
         <div className="flex flex-col gap-6 max-w-sm">
           <div className="flex items-center gap-3">
@@ -23,7 +23,7 @@ const Footer = () => {
           </p>
         </div>
 
-        <div className="flex gap-16 font-mono text-sm">
+        <div className="flex flex-col sm:flex-row gap-10 sm:gap-16 font-mono text-sm w-full md:w-auto">
           <div className="flex flex-col gap-4">
             <h4 className="text-white font-bold tracking-widest uppercase mb-2">Flotte</h4>
             <Link to="/products#classe-littoral" className="hover:text-gold transition-colors interactive-element">Classe Littoral</Link>
@@ -39,7 +39,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto border-t border-white/10 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center font-mono text-xs opacity-60">
+      <div className="max-w-7xl mx-auto border-t border-white/10 mt-12 md:mt-16 pt-8 flex flex-col md:flex-row justify-between items-center font-mono text-xs opacity-60 gap-4 md:gap-0 text-center md:text-left">
         <p>&copy; {new Date().getFullYear()} Moby Dick Naval Engineering. Tous droits réservés.</p>
         <div className="flex gap-4 mt-4 md:mt-0">
           <a href="#" className="hover:text-white transition-colors">Mentions légales</a>

@@ -39,18 +39,18 @@ const History = () => {
 
       <div className="absolute top-20 left-16 z-20">
         <span className="font-mono text-xs tracking-widest uppercase text-gold font-bold">Héritage</span>
-        <h2 className="font-syne text-4xl font-bold uppercase mt-2">Chronologie</h2>
+        <h2 className="font-syne text-3xl sm:text-4xl font-bold uppercase mt-2">Chronologie</h2>
       </div>
 
       <div
         ref={containerRef}
-        className="h-full w-fit flex items-center px-16 lg:px-[20vw] gap-[15vw]"
+        className="h-full w-fit flex items-center px-8 md:px-16 lg:px-[20vw] gap-16 md:gap-[15vw]"
       >
         {/* Decorative horizontal line representing the timeline */}
         <div className="absolute top-1/2 left-0 w-[500vw] h-[1px] bg-white/10 -translate-y-1/2 z-0" />
 
         {milestones.map((milestone, idx) => (
-          <div key={idx} className="w-[300px] md:w-[400px] shrink-0 relative z-10 group">
+          <div key={idx} className="w-[85vw] md:w-[400px] shrink-0 relative z-10 group">
             <div className="w-4 h-4 rounded-full bg-abyss border border-gold absolute top-[50%] -left-2 -translate-y-1/2 group-hover:bg-gold transition-colors duration-500" />
             <div className="mb-8">
               <span className="font-display italic text-6xl md:text-8xl text-white/5 group-hover:text-gold/20 transition-colors duration-500 block -ml-4">

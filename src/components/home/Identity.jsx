@@ -52,7 +52,7 @@ const Identity = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative w-full py-40 bg-zinc-50 overflow-hidden text-abyss z-10 rounded-t-[3rem]">
+    <section ref={containerRef} className="relative w-full py-20 md:py-40 bg-zinc-50 overflow-hidden text-abyss z-10 rounded-t-[2rem] md:rounded-t-[3rem]">
       {/* Ondes Abyssales Background */}
       <div 
         ref={bgRef}
@@ -62,11 +62,11 @@ const Identity = () => {
         <div className="absolute top-[20%] right-[-10%] w-[80%] h-[80%] bg-gold/15 rounded-full blur-3xl" />
       </div>
       
-      <div className="max-w-7xl mx-auto px-8 lg:px-16 flex flex-col md:flex-row gap-20 items-stretch relative z-10">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-16 flex flex-col md:flex-row gap-12 md:gap-20 items-stretch relative z-10">
         <div className="flex-1 flex flex-col justify-between">
           <div>
             <span className="font-mono text-xs tracking-widest uppercase text-gold font-bold block mb-8">Identité</span>
-            <h2 className="font-syne text-5xl md:text-7xl font-bold tracking-tight uppercase leading-[0.9]">
+            <h2 className="font-syne text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight uppercase leading-[0.9]">
               Maîtriser<br />
               <span className="text-outline text-black" style={{ WebkitTextStroke: '1px #0A1128', color: 'transparent' }}>l'Océan.</span>
             </h2>

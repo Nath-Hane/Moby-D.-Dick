@@ -75,10 +75,10 @@ const Products = () => {
   ];
 
   return (
-    <div className="bg-abyss min-h-screen pt-32">
-      <div className="max-w-7xl mx-auto px-8 lg:px-16 mb-24 z-10 relative">
+    <div className="bg-abyss min-h-screen pt-24 md:pt-32">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-16 mb-12 md:mb-24 z-10 relative">
         <span className="font-mono text-xs tracking-widest uppercase text-gold font-bold block mb-4">La Flotte B2B</span>
-        <h1 className="font-syne text-5xl md:text-7xl font-bold tracking-tight uppercase text-white leading-[0.9]">
+        <h1 className="font-syne text-3xl sm:text-5xl md:text-7xl font-bold tracking-tight uppercase text-white leading-[0.9]">
           Architectures<br />Navales
         </h1>
       </div>
@@ -104,9 +104,9 @@ const Products = () => {
       </div>
 
       {/* Strategic B2B Lead Gen CTA / Contact block */}
-      <section className="bg-gold text-abyss py-32 px-8 lg:px-16 border-t border-abyss flex items-center justify-center">
+      <section className="bg-gold text-abyss py-16 md:py-32 px-6 md:px-8 lg:px-16 border-t border-abyss flex items-center justify-center">
         <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
-          <h2 className="font-syne font-bold text-4xl md:text-6xl uppercase tracking-tighter leading-none mb-8">
+          <h2 className="font-syne font-bold text-3xl sm:text-4xl md:text-6xl uppercase tracking-tighter leading-none mb-8">
             Engager le chantier naval
           </h2>
           <p className="font-mono text-sm max-w-xl mx-auto mb-12 opacity-80 leading-relaxed text-abyss">

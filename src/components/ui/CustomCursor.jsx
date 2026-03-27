@@ -1,11 +1,21 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const CustomCursor = () => {
   const dotRef = useRef(null);
   const ringRef = useRef(null);
   const isHovering = useRef(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   useEffect(() => {
+    // Detect touch device
+    const checkTouch = () => {
+      setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    };
+    checkTouch();
+    
+    // Only initialize GSAP/listeners if not on a touch device
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
+
     const dot = dotRef.current;
     const ring = ringRef.current;
     if (!dot || !ring) return;
@@ -51,6 +61,8 @@ const CustomCursor = () => {
       cancelAnimationFrame(rafId);
     };
   }, []);
+
+  if (isTouchDevice) return null;
 
   return (
     <>

@@ -13,45 +13,77 @@ const HullSection = ({ title, subtitle, description, imageColor, imageUrl, image
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Pin the visual area while scrolling past
-      const masterTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top top',
-          end: 'bottom bottom',
-          pin: visualsRef.current,
-          scrub: true,
-          anticipatePin: 1,
-        }
+      let mm = gsap.matchMedia();
+
+      // Desktop animations
+      mm.add("(min-width: 768px)", () => {
+        const masterTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top top',
+            end: 'bottom bottom',
+            pin: visualsRef.current,
+            scrub: true,
+            anticipatePin: 1,
+          }
+        });
+
+        // Crossfade image to blueprint
+        masterTl.to(imageRef.current, {
+          opacity: 0,
+          ease: 'none',
+          duration: 0.5,
+        }, 0);
+
+        masterTl.fromTo(blueprintRef.current, {
+          opacity: 0,
+          scale: 0.95,
+        }, {
+          opacity: 1,
+          scale: 1,
+          ease: 'power1.out',
+          duration: 0.8,
+        }, 0);
+
+        // Parallax effect on the text
+        gsap.to(textRef.current, {
+          y: -100,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
+          }
+        });
       });
 
-      // Crossfade image to blueprint
-      masterTl.to(imageRef.current, {
-        opacity: 0,
-        ease: 'none',
-        duration: 0.5,
-      }, 0);
+      // Mobile animations (no pinning, flow naturally)
+      mm.add("(max-width: 767px)", () => {
+        const masterTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: visualsRef.current,
+            start: 'top 80%',
+            end: 'bottom top',
+            scrub: true,
+          }
+        });
 
-      masterTl.fromTo(blueprintRef.current, {
-        opacity: 0,
-        scale: 0.95,
-      }, {
-        opacity: 1,
-        scale: 1,
-        ease: 'power1.out',
-        duration: 0.8,
-      }, 0);
+        masterTl.to(imageRef.current, {
+          opacity: 0,
+          ease: 'none',
+          duration: 0.5,
+        }, 0);
 
-      // Parallax effect on the text
-      gsap.to(textRef.current, {
-        y: -100,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: true,
-        }
+        masterTl.fromTo(blueprintRef.current, {
+          opacity: 0,
+          scale: 0.95,
+        }, {
+          opacity: 1,
+          scale: 1,
+          ease: 'power1.out',
+          duration: 0.8,
+        }, 0);
       });
 
     }, sectionRef);
@@ -60,13 +92,13 @@ const HullSection = ({ title, subtitle, description, imageColor, imageUrl, image
   }, []);
 
   return (
-    <section ref={sectionRef} className={cn("relative w-full min-h-[150vh] flex flex-col md:flex-row items-start", reverse ? "bg-zinc-50 text-abyss" : "bg-abyss text-foam")}>
+    <section ref={sectionRef} className={cn("relative w-full md:min-h-[150vh] flex flex-col md:flex-row items-start", reverse ? "bg-zinc-50 text-abyss" : "bg-abyss text-foam")}>
       
       {/* Visuals Area (Left side on desktop, right if reversed) */}
       <div 
         ref={visualsRef} 
         className={cn(
-          "w-full md:w-[60vw] h-screen flex items-center justify-center p-8 md:p-16 relative",
+          "w-full md:w-[60vw] h-[50vh] md:h-screen flex items-center justify-center p-10 md:p-16 relative",
           reverse ? "md:order-last" : "md:order-first"
         )}
       >
@@ -123,9 +155,9 @@ const HullSection = ({ title, subtitle, description, imageColor, imageUrl, image
       </div>
 
       {/* Content Area (Scrolls past) */}
-      <div className={cn("w-full md:w-[40vw] pt-[50vh] pb-[50vh] px-8 lg:px-16 flex flex-col justify-center", reverse ? "md:order-first" : "md:order-last")}>
+      <div className={cn("w-full md:w-[40vw] py-16 md:pt-[50vh] md:pb-[50vh] px-6 md:px-8 lg:px-16 flex flex-col justify-center", reverse ? "md:order-first" : "md:order-last")}>
         <div ref={textRef}>
-          <h2 className={cn("font-syne text-5xl md:text-7xl font-bold uppercase tracking-tight mb-2 leading-none", reverse ? "text-abyss" : "text-white")}>
+          <h2 className={cn("font-syne text-4xl sm:text-5xl md:text-7xl font-bold uppercase tracking-tight mb-2 leading-none", reverse ? "text-abyss" : "text-white")}>
             {title}
           </h2>
           {subtitle && (

@@ -6,6 +6,7 @@
   body {
     @apply bg-abyss text-foam antialiased font-syne selection:bg-gold selection:text-abyss;
     overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
   }
 }
 

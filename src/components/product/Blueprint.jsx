@@ -35,8 +35,9 @@ const Blueprint = ({ title, scale, specs }) => {
           <div className="w-1/2 h-16 border border-gold border-dashed rounded-[50%]" />
           
           {/* Measurement Annotations */}
-          <div className="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] opacity-70">&lt; LOA: {specs.length} &gt;</div>
-          <div className="absolute top-1/2 -right-16 -translate-y-1/2 text-[10px] opacity-70 transform origin-left">BEAM: {specs.beam}</div>
+          <div className="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] opacity-70 whitespace-nowrap">&lt; LOA: {specs.length} &gt;</div>
+          <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] opacity-70 md:hidden whitespace-nowrap">BEAM: {specs.beam}</div>
+          <div className="hidden md:block absolute top-1/2 -right-16 -translate-y-1/2 text-[10px] opacity-70 transform origin-left whitespace-nowrap">BEAM: {specs.beam}</div>
         </div>
       </div>
 

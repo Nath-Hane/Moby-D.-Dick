@@ -67,9 +67,9 @@ const Insights = () => {
   return (
     <div className="bg-abyss min-h-screen pt-32 text-white pb-20">
       {/* Hero */}
-      <div className="max-w-7xl mx-auto px-8 lg:px-16 mb-24 z-10 relative">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-16 mb-16 md:mb-24 z-10 relative">
         <span className="font-mono text-xs tracking-widest uppercase text-gold font-bold block mb-4">Actualités Corporate</span>
-        <h1 className="font-syne text-5xl md:text-7xl font-bold tracking-tight uppercase leading-[0.9]">
+        <h1 className="font-syne text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight uppercase leading-[0.9]">
           Insights<br />Stratégiques
         </h1>
         <p className="font-mono text-sm max-w-sm text-titanium mt-4">
@@ -77,11 +77,11 @@ const Insights = () => {
         </p>
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-8 lg:px-16" ref={containerRef}>
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-8 lg:px-16" ref={containerRef}>
         {/* Timeline main vertical line */}
-        <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-[1px] bg-white/10 md:-translate-x-1/2" />
+        <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-[1px] bg-white/10 -translate-x-1/2" />
 
-        <div className="flex flex-col gap-20">
+        <div className="flex flex-col gap-16 md:gap-20">
           {posts.map((post, index) => {
             const IconComponent = post.icon;
             const isEven = index % 2 === 0;
@@ -92,10 +92,10 @@ const Insights = () => {
                 className={`flex flex-col md:flex-row items-center relative ${isEven ? 'md:justify-start' : 'md:justify-end'}`}
               >
                 {/* Timeline node/center */}
-                <div className="absolute left-8 md:left-1/2 w-4 h-4 rounded-full bg-gold border-4 border-abyss md:-translate-x-1/2 z-20 shadow-[0_0_15px_rgba(212,175,55,0.5)]" />
+                <div className="absolute left-6 md:left-1/2 w-4 h-4 rounded-full bg-gold border-4 border-abyss -translate-x-1/2 z-20 shadow-[0_0_15px_rgba(212,175,55,0.5)]" />
 
-                <div className={`w-full md:w-[45%] pl-16 md:pl-0 ${isEven ? 'md:pr-12' : 'md:pl-12'}`}>
-                  <div className="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-2xl hover:border-gold/30 transition-all duration-500 group relative">
+                <div className={`w-full md:w-[45%] pl-12 md:pl-0 mt-8 md:mt-0 ${isEven ? 'md:pr-12' : 'md:pl-12'}`}>
+                  <div className="bg-white/5 backdrop-blur-md border border-white/10 p-6 md:p-8 rounded-2xl hover:border-gold/30 transition-all duration-500 group relative">
                     {/* Floating Quarter */}
                     <div className="absolute -top-4 -left-4 md:-top-5 md:-left-5 bg-gold text-abyss font-syne font-black text-xl w-12 h-12 flex items-center justify-center rounded-xl shadow-lg">
                       {post.quarter}

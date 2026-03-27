@@ -16,12 +16,16 @@ const Hero = () => {
       const span = document.createElement('span');
       span.textContent = char;
       span.style.opacity = 0;
-      span.style.display = 'inline-block';
       span.style.transform = 'translateY(40px)';
       span.style.filter = 'blur(10px)';
+      
       if (char === ' ') {
-        span.innerHTML = '&nbsp;';
+        span.className = 'block sm:inline-block sm:w-[0.3em]';
+        span.innerHTML = '';
+      } else {
+        span.className = 'inline-block';
       }
+      
       titleRef.current.appendChild(span);
     });
 
@@ -59,7 +63,7 @@ const Hero = () => {
       <div className="relative z-10 text-center w-full px-4">
         <h1 
           ref={titleRef}
-          className="font-syne font-extrabold text-7xl md:text-[9rem] tracking-tighter text-white uppercase leading-none mix-blend-overlay"
+          className="font-syne font-extrabold text-4xl sm:text-5xl md:text-[9rem] tracking-tighter text-white uppercase leading-none mix-blend-overlay w-full"
         >
           MOBY DICK
         </h1>
@@ -67,7 +71,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5, duration: 1, ease: "easeOut" }}
-          className="mt-8 font-mono text-titanium text-lg tracking-[0.3em] uppercase max-w-xl mx-auto"
+          className="mt-6 md:mt-8 font-mono text-titanium text-xs sm:text-sm md:text-lg tracking-[0.2em] md:tracking-[0.3em] uppercase max-w-xl mx-auto px-4"
         >
           Ingénierie navale absolue.
         </motion.p>
